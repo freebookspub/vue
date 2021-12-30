@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>kidslearn</title><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9446097154137176" crossorigin="anonymous" data-ad-frequency-hint="30s"></script><script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script><script>window.adsbygoogle = window.adsbygoogle || [];
+        const adBreak = adConfig = function(o) {
+            adsbygoogle.push(o);
+        }
+
+        function setCookie(name, value, seconds) {
+            var expires = ''
+            if (seconds) {
+                var date = new Date()
+                date.setTime(date.getTime() + (seconds * 1000))
+                expires = '; expires=' + date.toUTCString()
+            }
+            document.cookie = name + '=' + (value || '') + expires + '; path=/'
+            }
+
+        function getCookie(name) {
+            var nameEQ = name + '='
+            var ca = document.cookie.split(';')
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i]
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length)
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+            }
+            return null
+            }
+
+        var PreRollAdFun = {
+            start: function(fun, timeout, adType) {
+                const adConfigPromise = new Promise((resolve, reject) => {
+                adConfig({
+                    preloadAdBreaks: 'on',
+                    onReady: () => {
+                    console.warn('adconfigure ready!')
+                    resolve(true)
+                    }
+                })
+                })
+                const timeoutPromise = new Promise((resolve, reject) => {
+                const timer = setTimeout(() => {
+                    resolve(false)
+                    clearTimeout(timer)
+                }, timeout)
+                })
+                Promise.race([adConfigPromise, timeoutPromise]).then(isShow => {
+                if (isShow) {
+                    adBreak({
+                    type: adType,
+                    name: adType + '_ad',
+                    adBreakDone: (info) => {
+                        console.warn(info)
+                        fun()
+                    }
+                    })
+                    setCookie('la', true, 45)
+                } else {
+                    fun()
+                }
+                })
+            }
+            }
+
+        function ShowAD(callback, timeout, type) {
+            console.log("show ad....")
+            PreRollAdFun.start(callback, timeout, type)
+            gtag('event', type, {
+                gameName: '{{info.title}}'
+            })
+            }
+
+        function _sendGA(){
+            console.log("request ad...")
+        }
+
+        function initAds() {
+            var lastAd = getCookie('la')
+            console.log('la...', lastAd)
+            if (lastAd == undefined || lastAd == false) {
+                PreRollAdFun.start(_sendGA, 2000, 'preroll')
+            }
+        }</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-HVBXMJHE9J"></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', "G-HVBXMJHE9J");
+        gtag('config', "AW-315600862");
+        gtag('config', "AW-336059840");
+
+        gtag('event', 'conversion', {'send_to': "AW-315600862/ircjCMP4r_cCEN7fvpYB" });
+        gtag('event', 'conversion', {'send_to': "AW-336059840/9n7RCLO2x_cCEMC7n6AB" });</script><link rel="manifest" href="manifest.json"><script>if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('serviceworker-7.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+        window.addEventListener('beforeinstallprompt', (event) => {
+            window.deferredPrompt = event;
+            if(document.getElementById('installContainer')){
+                document.getElementById('installContainer').style.display = "block";
+                gtag('event', 'showA2HS', {
+                    location: "icon",
+                    gameName: "{{info.title}}"
+                })
+            }
+        });
+        window.addEventListener('appinstalled', (event) => {
+            document.getElementById('installContainer').style.display = "none"
+            window.deferredPrompt = null;
+            gtag('event', 'finishA2HS', {
+                    location: "icon",
+                    gameName: "{{info.title}}"
+                })
+        });
+    }</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-HVBXMJHE9J"></script><link href="/static/css/app.770f79a8.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but kidslearn doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><div id="installContainer" style="display: none;"></div><script>if(document.getElementById('installContainer')){
+          document.getElementById('installContainer').addEventListener('click', async () => {
+              console.log('installContainer-clicked');
+              const promptEvent = window.deferredPrompt;
+              if (!promptEvent) {
+                  return;
+              }
+              promptEvent.prompt();
+              const result = await promptEvent.userChoice;
+              window.deferredPrompt = null;
+              document.getElementById('installContainer').style.display = "none";
+              console.log("click....")
+              gtag('event', 'clickA2HS', {
+                  location: "icon",
+                  gameName: "{{info.title}}"
+              })
+          });
+      }
+      initAds() //</script><script src="/static/js/app.e0114288.js"></script></body></html>

@@ -1,0 +1,30 @@
+{
+        "short_name": "Free Videos&Games",
+        "name": "Free Online Videos&Games",
+        "icons": [
+            {
+                "src": "//assets.kidslearn.cc/icons/kidsgames_48.png",
+                "type": "image/png",
+                "sizes": "48x48"
+            },
+            {
+                "src": "//assets.kidslearn.cc/icons/kidsgames_96.png",
+                "type": "image/png",
+                "sizes": "96x96"
+            },
+            {
+                "src": "//assets.kidslearn.cc/icons/kidsgames_144.png",
+                "type": "image/png",
+                "sizes": "144x144"
+            },
+            {
+                "src": "//assets.kidslearn.cc/icons/kidsgames_192.png",
+                "type": "image/png",
+                "sizes": "192x192"
+            }
+        ],
+        "display": "standalone",
+        "background_color": "#00547c",
+        "theme_color": "#007ABA",
+        "start_url": "/?pwa=1"
+    }
